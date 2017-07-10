@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
 sudo yum install epel-release -y 
 sudo yum install ansible -y
 
+sudo yum install wget -y
 wget https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 sudo yum install python-devel -y
@@ -58,6 +59,8 @@ sudo gitlab-ctl reconfigure
 sudo sed -i '$d' /var/opt/gitlab/nginx/conf/gitlab-http.conf
 echo -e '  location /jenkins {\n    proxy_cache off;\n    proxy_pass http://127.0.0.1:8090;\n  }\n}' | sudo tee -a /var/opt/gitlab/nginx/conf/gitlab-http.conf
 sudo gitlab-ctl restart
+
+sudo yum install maven -y
 
 #sudo firewall-cmd --permanent --add-service=http
 #sudo systemctl reload firewalld
